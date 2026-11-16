@@ -4,21 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<jsp:include page="../include/titleNav.jsp">
 </head>
 <body>
 	
 	<h2>SIGN-UP FORM</h2>
 	
-	<a href="/firstPjt/">home</a>
-	&nbsp;&nbsp; | &nbsp;&nbsp;
-	<a href="/firstPjt/signup.mem">sign-up</a>
-	&nbsp;&nbsp; | &nbsp;&nbsp;
-	<a href="/firstPjt/signin.mem">sign-in</a>
+	<jsp:include page="../include/nav.jsp">
 	
 	<br><br>
 	
-	<form action="/firstPjt/signup_confirm.mem", method="post">
+	<form action="/firstPjt/signup_confirm.mem" method="post">
 		
 		<input type="text" name="memId" placeholder="Input new member ID!!">
 		<br>
