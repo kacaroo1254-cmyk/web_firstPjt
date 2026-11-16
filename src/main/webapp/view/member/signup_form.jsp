@@ -4,17 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<jsp:include page="../include/titleNav.jsp">
+<jsp:include page="../include/titleNav.jsp" />
 </head>
 <body>
 	
 	<h2>SIGN-UP FORM</h2>
 	
-	<jsp:include page="../include/nav.jsp">
+	<jsp:include page="../include/nav.jsp" />
 	
 	<br><br>
 	
-	<form action="/firstPjt/signup_confirm.mem" method="post">
+	<form action="<%= request.getContextPath() %>/signup_confirm.mem" method="post">
 		
 		<input type="text" name="memId" placeholder="Input new member ID!!">
 		<br>

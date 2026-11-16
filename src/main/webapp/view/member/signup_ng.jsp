@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<jsp:include page="../include/titleNav.jsp">
+<jsp:include page="../include/titleNav.jsp" />
 </head>
 <body>
 	
-	<jsp:include page="../include/nav.jsp">
+	<jsp:include page="../include/nav.jsp" />
 	
 	<br><br>
 	This page is signup ng!!

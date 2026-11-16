@@ -1,4 +1,4 @@
-package com.office.ex;
+package com.office.ex.member;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+import com.office.ex.Config;
 
 
 @WebServlet("*.mem")
@@ -31,7 +33,7 @@ public class MemberController extends HttpServlet {
 		switch (command) {
 		case "/signup.mem":
 			
-			nextPage = "view/member/signup_form.jsp";
+			nextPage = generateView("/signup_form");
 			
 			break;
 			
@@ -40,15 +42,15 @@ public class MemberController extends HttpServlet {
 			int resultForSignUp = memberService.signUpConfirm(request, response);
 			
 			if (resultForSignUp == MemberService.SIGN_UP_OK) {
-				nextPage = "view/member/signup_ok.jsp";
+				nextPage = generateView("/signup_ok");
 			} else {
-				nextPage = "view/member/signup_ng.jsp";
+				nextPage = generateView("/signup_ng");
 			}
 			
 			break;
 			
 		case "/signin.mem":
-			nextPage = "view/member/signin_form.jsp";
+			nextPage = generateView("/signin_form");
 			
 			break;
 		
@@ -57,15 +59,19 @@ public class MemberController extends HttpServlet {
 			int resultForSignIn = memberService.signInConfirm(request, response);
 			
 			if (resultForSignIn == MemberService.SIGN_IN_OK) {
-				nextPage = "view/member/signin_ok.jsp";
+				nextPage = generateView("/signin_ok");
 			} else {
-				nextPage = "view/member/signin_ng.jsp";
+				nextPage = generateView("/signin_ng");
 			}
 			
 			break;
-		case "/signout.mem":
+			
+		case MemberConfig.MEMBER_SIGNOUT_CONFIRM:
 			
 			memberService.signOutConfirm(request, response);
+			
+			nextPage = request.getContextPath().concat(Config.HOME);
+			System.out.println("nextPage: " + nextPage);
 			
 			break;
 		}
@@ -76,6 +82,15 @@ public class MemberController extends HttpServlet {
 		
 	}
 
+	private String generateView(String viewName) {
+		
+		String view = MemberConfig.VIEW_PREFIX
+				.concat(viewName)
+				.concat(MemberConfig.VIEW_SURFIX);
+		
+		return view;
+	}
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
